@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/indertData" method="post">
+<label for="">Name:-</label><input type="text" name="userName" placeholder="Enter your Name"><br><br>
+<label for="">Password:-</label><input type="password" name="password" placeholder="Enter your Password"><br><br>
+<input type="email" name="email">
+<label for="">Men</label><input type="radio" name="gender" value="Men"><br>
+<label for="">Women</label><input type="radio" name="gender" value="Women" ><br><br>
+<input type="submit">
+    </form>
+
+    <table border="">
+        <tr>
+          <td>name</td>
+          <td>password</td>
+          <td>value</td>
+         <td>delete</td>
+        </tr>
+  
+        <% userData.map((data) => { %>
+        <tr>
+            <td><%= data.userName %></td>
+            <td><%= data.password %></td>
+            <td><%= data.email %></td>
+            <td><%= data.gender %></td>
+            <td>
+            <a href="/deleteData/<%= data.id %> ">  <button>delete</button></a>
+            <a href="/editData/<%= data.id %>"> <button>Update</button></a>
+        </td>
+        </tr>
+        <% }) %>
+      </table>
+</body>
+</html>
