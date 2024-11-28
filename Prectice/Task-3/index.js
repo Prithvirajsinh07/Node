@@ -20,7 +20,6 @@ app.get("/", async (req, res) => {
   
 });
 
-
 app.post("/indertData", async (req, res) => {
     try {
         await UserModel.create(req.body);
@@ -63,4 +62,4 @@ app.get("/editData/:id" , async (req , res ) => {
 app.listen(PORT, () => {
     console.log(`Server started ${PORT}`);
     connection();
-})
+});

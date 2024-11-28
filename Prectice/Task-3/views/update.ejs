@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <form action="/updateData/<%= storeData.id %>" method="post">
-        <label for="">Name:-</label><input type="text" name="userName" placeholder="Enter your Name" value="<%= storeData.userName %>"><br><br>
-        <label for="">Password:-</label><input type="password" name="password" placeholder="Enter your Password" value="<%= storeData.password %>"><br><br>
-        <button>Update</button>
-            </form>
-        
-</body>
+      <label for="">Name:-</label
+      ><input
+        type="text"
+        name="userName"
+        placeholder="Enter your Name"
+        value="<%= storeData.userName %>"
+      /><br /><br />
+      <label for="">Password:-</label
+      ><input
+        type="password"
+        name="password"
+        placeholder="Enter your Password"
+        value="<%= storeData.password %>"
+      /><br /><br />
+
+      <label for="">Email:-</label
+      ><input
+        type="email"
+        name="email"
+        value="<%= storeData.email %>"
+      /><br /><br />
+
+      <label for="">Gender:-</label><br />
+      <label for="">Men</label><input type="radio" name="gender" value="Men" <%=
+      storeData.gender === "Men"? "checked":"" %> /><br />
+
+      <label for="">Women</label><input type="radio" name="gender" value="Women"
+      <%= storeData.gender === "Women"? "checked":"" %> /><br /><br />
+      <label for="">Hobbie:-</label><br />
+      <input type="checkbox" value="Runnig" name="Hobbie" <%=
+      storeData.Hobbie.includes("Runnig")? "checked":"" %> /><label for=""
+        >Runnig</label
+      ><br />
+      <input type="checkbox" value="Swimming" name="Hobbie" <%=
+      storeData.Hobbie.includes("Swimming")? "checked":"" %> /><label for=""
+        >Swimming</label
+      ><br />
+      <input type="checkbox" value="Football" name="Hobbie" <%=
+      storeData.Hobbie.includes("Football")? "checked":"" %> /><label for=""
+        >Football</label
+      ><br /><br />
+      <button>Update</button>
+    </form>
+  </body>
 </html>

@@ -16,7 +16,11 @@ const userData = mongoose.Schema({
     gender : {
         type : String,
         required : true 
-    }
+    },
+     Hobbie : {
+        type : Array,
+        required : true 
+     }
 });
 
 const UserModel = mongoose.model("userData" , userData);
