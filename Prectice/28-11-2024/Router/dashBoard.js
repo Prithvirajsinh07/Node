@@ -3,20 +3,13 @@ const path = require("path");
 const UserModel = require("../model/UserDataBase");
 const dashBoardRotes = express.Router();
 const multer = require("multer");
-const passport = require("passport");
+const passport = require("../config/passport-local")
 
 dashBoardRotes.get("/", (req, res) => {
-    const cookieData = req.cookies["auth"];
-    console.log(cookieData);
-
-    if (cookieData) {
-        res.redirect("/dashBoard");
-        return;
-    }
     res.render("signIn");
 
 })
-
+~
 dashBoardRotes.get("/signup", (req, res) => {
     res.render("signUp");
 })
@@ -70,24 +63,20 @@ dashBoardRotes.post("/insertData", UserModel.imageUpload, async (req, res) => {
         console.log(err);
     }
 });
-
-dashBoardRotes.get("/dashBoard", (req, res) => {
-    res.render("dashBoard");
-})
-dashBoardRotes.get("/viewAdmin", (req, res) => {
+dashBoardRotes.get("/viewAdmin", passport.isAuth , (req, res) => {
     res.render("viewAdmine")
 })
 dashBoardRotes.get("/dashBoard", (req, res) => {
-    const cookieData = req.cookies["auth"];
-    console.log(cookieData);
-    if (!cookieData) {
-        res.redirect("/")
-    }
     res.render("dashBoard");
 })
 
 dashBoardRotes.post("/logIn", passport.authenticate("local" , {failureRedirect :"/"}) ,async (req, res) => {
-    res.redirect("/dashBoard");
+    try{
+res.redirect("/dashBoard");
+    }catch(err){
+        console.log(err);
+    }
+
 })
 
 module.exports = dashBoardRotes;

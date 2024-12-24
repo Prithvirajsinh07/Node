@@ -18,19 +18,31 @@ passport.use(new PassportStretrgy({ usernameField: "userName" }, async (userName
 
 passport.serializeUser(async (user , done)=> {
     const userData = await UserModel.findById(user.id);
+    console.log(userData,"userData")
     if(userData){
        return done(null , userData);
     }else{
         done(null , false);
     }
 })
-passport.deserializeUser(async (user , done)=> {
-    const userData = await UserModel.findById(user.id);
+passport.deserializeUser(async (id , done)=> {
+    const userData = await UserModel.findById(id);
+    console.log(userData, "deserial")
     if(userData){
        return done(null , userData);
     }else{
        return done(null , false);
     }
 });
+
+passport.isAuth = (req, res , next) => {
+   console.log(req.isAuthenticated(),"auth");
+   if(req.isAuthenticated()){
+      next();
+   }
+   else{
+      res.redirect("/")
+   }
+}
 
 module.exports = passport;
