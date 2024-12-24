@@ -66,7 +66,7 @@ dashBoardRotes.post("/insertData", UserModel.imageUpload, async (req, res) => {
 dashBoardRotes.get("/viewAdmin", passport.isAuth , (req, res) => {
     res.render("viewAdmine")
 })
-dashBoardRotes.get("/dashBoard", (req, res) => {
+dashBoardRotes.get("/dashBoard",passport.isAuth, (req, res) => {
     res.render("dashBoard");
 })
 
