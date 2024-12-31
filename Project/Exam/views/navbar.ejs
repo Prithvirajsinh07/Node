@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Kapella Bootstrap Admin Dashboard Template</title>
+	<!-- base:css -->
+	<link rel="stylesheet" href="./assets/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="./assets/base/vendor.bundle.base.css">
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<!-- End plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="./assets/style.css">
+	<!-- endinject -->
+	<link rel="shortcut icon" href="./assets/images/favicon.png" />
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@100;200;300;400;600;700;800;900&display=swap');
+h1{ padding: 0 0 30px; }
+a:hover{ text-decoration:none; }
+.product-grid{
+    font-family: "Blinker", sans-serif;
+    text-align: center;
+    padding: 10px 10px;
+    margin: 0 auto;
+    border: 2px solid #dedade;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+.product-grid:hover{ border: 2px solid #003844;}
+.product-grid .product-image{
+    position: relative;
+}
+.product-grid .product-image a.image{display: block; }
+.product-grid .product-image img{
+    width: 100%;
+    height: auto;
+}
+.product-image .pic-1{ transition: all .5s ease; }
+.product-grid:hover .product-image .pic-1{ opacity: 0; }
+.product-image .pic-2{
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .5s ease;
+}
+.product-grid:hover .product-image .pic-2{ opacity: 1; }
+.product-grid .product-links{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    opacity: 1;
+    border: 1px solid #aaa;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: all .3s ease 0.3s;
+}
+.product-grid:hover .product-links{ opacity: 1; }
+.product-grid .product-links li{
+    margin: 0;
+    display: block;
+}
+.product-grid .product-links li a i{ line-height:inherit; }
+.product-grid .product-links li a{
+    color: #aaa;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 37px;
+    height: 40px;
+    width: 40px;
+    margin: 0;
+    border-bottom: 1px solid #aaa;
+    display: block;
+    position: relative;
+    transition: all 0.3s ease 0.1s;
+}
+.product-grid .product-links li a:before,
+.product-grid .product-links li a:after{
+    content: attr(data-tip);
+    color: #fff;
+    background: #000;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 5px 10px;
+    border-radius: 5px 5px;
+    white-space: nowrap;
+    display: none;
+    transform: translateY(-50%);
+    position: absolute;
+    right: 53px;
+    top: 50%;
+}
+.product-grid .product-links li a:after{
+    content: "";
+    height: 15px;
+    width: 15px;
+    padding: 0;
+    border-radius: 0;
+    transform: translateY(-50%) rotate(45deg);
+    right: 50px;
+}
+.product-grid .product-links li a:hover:before,
+.product-grid .product-links li a:hover:after{ display: block; }
+.product-grid .product-links li a:hover{
+    color: #fff;
+    background-color: #003844;
+}
+.product-grid .product-content{ padding: 10px 0 0; }
+.product-grid .rating{
+    color: #ffd200;
+    font-size: 14px;
+    padding: 0;
+    margin: 0 0 10px;
+    list-style: none;
+    display: inline-block;
+}
+.product-grid .rating li:last-child {
+    color: #111;
+    display: inline-block;
+}
+.product-grid .title{
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin: 0 0 5px;
+}
+.product-grid .title a{
+    color: #000;
+    transition: all 0.3s ease 0s;
+}
+.product-grid .title a:hover{ color: #003844; }
+.product-grid .price{
+    color: #000;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 5px;
+}
+.product-grid .add-cart{
+    color: #003844;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 11px 12px 10px;
+    border: 1px solid #003844;
+    display: block;
+    position: relative;
+    transition: all .3s ease;
+    z-index: 1;
+}
+.product-grid .add-cart i{ margin: 0 5px 0 0; }
+.product-grid .add-cart:hover{ color: #fff; }
+.product-grid .add-cart:before{
+    content: "";
+    background: #003844;
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+}
+.product-grid .add-cart:hover:before{ width: 100%; }
+@media screen and (max-width: 990px){
+    .product-grid{ margin-bottom: 30px; }
+}
+	</style>
+</head>
+
+<body>
+	<div class="container-scroller">
+
+		<!-- partial:partials/_horizontal-navbar.html -->
+		<div class="horizontal-menu">
+			<nav class="navbar top-navbar col-lg-12 col-12 p-0">
+				<div class="container-fluid">
+					<div class="navbar-menu-wrapper d-flex align-items-center justify-content-between">
+						<ul class="navbar-nav navbar-nav-left">
+							<li class="nav-item ms-0 me-5 d-lg-flex d-none">
+								<a href="#" class="nav-link horizontal-nav-left-menu"><i
+										class="mdi mdi-format-list-bulleted"></i></a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center"
+									id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+									<i class="mdi mdi-bell mx-0"></i>
+									<span class="count bg-success">2</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+									aria-labelledby="notificationDropdown">
+									<p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+									<a class="dropdown-item preview-item">
+										<div class="preview-thumbnail">
+											<div class="preview-icon bg-success">
+												<i class="mdi mdi-information mx-0"></i>
+											</div>
+										</div>
+										<div class="preview-item-content">
+											<h6 class="preview-subject font-weight-normal">Application Error</h6>
+											<p class="font-weight-light small-text mb-0 text-muted">
+												Just now
+											</p>
+										</div>
+									</a>
+									<a class="dropdown-item preview-item">
+										<div class="preview-thumbnail">
+											<div class="preview-icon bg-warning">
+												<i class="mdi mdi-settings mx-0"></i>
+											</div>
+										</div>
+										<div class="preview-item-content">
+											<h6 class="preview-subject font-weight-normal">Settings</h6>
+											<p class="font-weight-light small-text mb-0 text-muted">
+												Private message
+											</p>
+										</div>
+									</a>
+									<a class="dropdown-item preview-item">
+										<div class="preview-thumbnail">
+											<div class="preview-icon bg-info">
+												<i class="mdi mdi-account-box mx-0"></i>
+											</div>
+										</div>
+										<div class="preview-item-content">
+											<h6 class="preview-subject font-weight-normal">New user registration</h6>
+											<p class="font-weight-light small-text mb-0 text-muted">
+												2 days ago
+											</p>
+										</div>
+									</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+									id="messageDropdown" href="#" data-bs-toggle="dropdown">
+									<i class="mdi mdi-email mx-0"></i>
+									<span class="count bg-primary">4</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+									aria-labelledby="messageDropdown">
+									<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+									<a class="dropdown-item preview-item">
+										<div class="preview-thumbnail">
+											<img src="./assets/images/faces/face4.jpg" alt="image" class="profile-pic">
+										</div>
+										<div class="preview-item-content flex-grow">
+											<h6 class="preview-subject ellipsis font-weight-normal">David Grey
+											</h6>
+											<p class="font-weight-light small-text text-muted mb-0">
+												The meeting is cancelled
+											</p>
+										</div>
+									</a>
+									<a class="dropdown-item preview-item">
+										<div class="preview-thumbnail">
+											<img src="./assets/images/faces/face2.jpg" alt="image" class="profile-pic">
+										</div>
+										<div class="preview-item-content flex-grow">
+											<h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+											</h6>
+											<p class="font-weight-light small-text text-muted mb-0">
+												New product launch
+											</p>
+										</div>
+									</a>
+									<a class="dropdown-item preview-item">
+										<div class="preview-thumbnail">
+											<img src="./assets/images/faces/face3.jpg" alt="image" class="profile-pic">
+										</div>
+										<div class="preview-item-content flex-grow">
+											<h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+											</h6>
+											<p class="font-weight-light small-text text-muted mb-0">
+												Upcoming board meeting
+											</p>
+										</div>
+									</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a href="#" class="nav-link count-indicator "><i
+										class="mdi mdi-message-reply-text"></i></a>
+							</li>
+							<li class="nav-item nav-search d-none d-lg-block ms-3">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="search">
+											<i class="mdi mdi-magnify"></i>
+										</span>
+									</div>
+									<input type="text" class="form-control" placeholder="search" aria-label="search"
+										aria-describedby="search">
+								</div>
+							</li>
+						</ul>
+						<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+							<a class="navbar-brand brand-logo" href="index.html"><img src="./assets/images/logo.svg"
+									alt="logo" /></a>
+							<a class="navbar-brand brand-logo-mini" href="index.html"><img
+									src="./assets/images/logo-mini.svg" alt="logo" /></a>
+						</div>
+						<ul class="navbar-nav navbar-nav-right">
+							<li class="nav-item dropdown  d-lg-flex d-none">
+								<button type="button" class="btn btn-inverse-primary btn-sm">Product </button>
+							</li>
+							<li class="nav-item dropdown d-lg-flex d-none">
+								<a class="dropdown-toggle show-dropdown-arrow btn btn-inverse-primary btn-sm"
+									id="nreportDropdown" href="#" data-bs-toggle="dropdown">
+									Reports
+								</a>
+								<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+									aria-labelledby="nreportDropdown">
+									<p class="mb-0 font-weight-medium float-left dropdown-header">Reports</p>
+									<a class="dropdown-item">
+										<i class="mdi mdi-file-pdf text-primary"></i>
+										Pdf
+									</a>
+									<a class="dropdown-item">
+										<i class="mdi mdi-file-excel text-primary"></i>
+										Exel
+									</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown d-lg-flex d-none">
+								<button type="button" class="btn btn-inverse-primary btn-sm">Settings</button>
+							</li>
+							<li class="nav-item nav-profile dropdown">
+								<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+									id="profileDropdown">
+									<span class="nav-profile-name">
+										<%= locals.user.username %>
+									</span>
+									<span class="online-status"></span>
+									<img src="<%= locals.user.profile %>" alt="profile" />
+								</a>
+								<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+									aria-labelledby="profileDropdown">
+									
+									<a class="dropdown-item" href="/changepassword">
+										<i class="mdi mdi-logout text-primary"></i>
+										change password?
+									</a>
+									<a class="dropdown-item" href="/logout">
+										<i class="mdi mdi-logout text-primary"></i>
+										Logout
+									</a>
+
+								</div>
+							</li>
+						</ul>
+						<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+							data-toggle="horizontal-menu-toggle">
+							<span class="mdi mdi-menu"></span>
+						</button>
+					</div>
+				</div>
+			</nav>
+			<nav class="bottom-navbar">
+				<div class="container">
+					<ul class="nav page-navigation">
+						<li class="nav-item">
+							<a class="nav-link" href="/categoryList">
+								<i class="mdi mdi-file-document-box menu-icon"></i>
+								<span class="menu-title">Dashboard</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="mdi mdi-cube-outline menu-icon"></i>
+								<span class="menu-title">Product</span>
+								<i class="menu-arrow"></i>
+							</a>
+							<div class="submenu">
+								<ul>
+									<li class="nav-item"><a class="nav-link"
+											href="/productList">catgory</a></li>
+									<li class="nav-item"><a class="nav-link"
+											href="#">Typography</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="mdi mdi-chart-areaspline menu-icon"></i>
+								<span class="menu-title">Form</span>
+								<i class="menu-arrow"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="mdi mdi-finance menu-icon"></i>
+								<span class="menu-title">Charts</span>
+								<i class="menu-arrow"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="/Table" class="nav-link">
+								<i class="mdi mdi-grid menu-icon"></i>
+								<span class="menu-title">Tables</span>
+								<i class="menu-arrow"></i>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link">
+								<i class="mdi mdi-emoticon menu-icon"></i>
+								<span class="menu-title">Icons</span>
+								<i class="menu-arrow"></i>
+							</a>
+						</li>
+					
+						<li class="nav-item">
+							<a href="docs/documentation.html" class="nav-link">
+								<i class="mdi mdi-file-document-box-outline menu-icon"></i>
+								<span class="menu-title">Documentation</span></a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
